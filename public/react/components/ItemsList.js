@@ -8,7 +8,7 @@ export const ItemsList = ({items, setSingleItem, setIsAddingItem}) => {
 	<div><button  className='header' onClick={()=>{setIsAddingItem(true)}}>
 		Add an Item
 	</button>
-	<button className='header'>Cart</button></div>
+	</div>
 		{
 			items.map((item, idx) => {
 				return <Items item={item} key={idx} setSingleItem={setSingleItem}/>
