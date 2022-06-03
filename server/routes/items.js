@@ -25,7 +25,7 @@ router.get("/:id", async (req, res, next) => {
 router.get("/cart", async (req, res, next) => {
   try {
     const items = await Items.findAll({where: {
-      cart : 'Y'
+      cart : "Y"
     }});
     res.send(items);
   } catch (error) {

@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import apiURL from '../api';
 
-export const ItemView = ({ singleItem, setSingleItem, seeCart, setSeeCart }) => {
+export const ItemView = ({ singleItem, setSingleItem, setShowCart, setAddCart , addCart }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
     const [category, setCategory] = useState("");
-    const[addCart, setAddCart]=useState([])
 
     const handleClick = async () => {
         const response = await fetch(`${apiURL}/items/${singleItem.id}`, { method: "DELETE" });
@@ -32,20 +31,21 @@ export const ItemView = ({ singleItem, setSingleItem, seeCart, setSeeCart }) => 
         for (let item in data) {
             if (data[item] === "") delete data[item];
         }
-        const response = await fetch(`${apiURL}/items/${singleItem.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        const response = await fetch(`${apiURL}/items/${item.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         await response.json();
-        const res = await fetch(`${apiURL}/items/${singleItem.id}`);
+        const res = await fetch(`${apiURL}/items/${item.id}`);
         const itemData = await res.json();
         setSingleItem(itemData);
-        console.log(item)
-
-        console.log(item.cart)
+        console.log(itemData)
+        setAddCart([...addCart, itemData])        
       
       }
+      console.log(addCart)
+
 
     return <>
-        <h3  id="allItems" onClick={()=>{setSingleItem(0)}}>All Items</h3>
-
+        <div id="allItems" ><button onClick={()=>{setSingleItem(0)}}>All Items</button>
+      <button onClick={()=>{setShowCart(true)}}>Cart</button></div>
 <div id="item"> 
 
     <div className="singleItem">
@@ -55,7 +55,6 @@ export const ItemView = ({ singleItem, setSingleItem, seeCart, setSeeCart }) => 
         <p>{singleItem.description}</p>
         <br></br>
         <h4>{singleItem.category}</h4> 
-        <h4>{singleItem.cart}</h4> 
         <br></br>
 
     </div> 
