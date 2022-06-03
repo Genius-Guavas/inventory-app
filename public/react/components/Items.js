@@ -1,13 +1,22 @@
 import React from 'react';
 import apiURL from '../api';
-export const Items = ({ item, setSingleItem}) => {
+
+export const Items = ({ item, setSingleItem, cart, setCart}) => {
   const handleClick = async () => {
     const response = await fetch(`${apiURL}/items/${item.id}`);
     const itemData = await response.json();
     setSingleItem(itemData);
 
   }
- 
+  async function addToCart(product){
+    try {
+        await setCart([...cart, product])
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+  }
   
   return <>
     <div  className="all">
@@ -16,6 +25,7 @@ export const Items = ({ item, setSingleItem}) => {
       <h4>${item.price}</h4>
       <div>
       <button onClick={handleClick}>Details</button>
+      <button onClick={()=>{addToCart(item)}}>Add to Cart</button>
       </div>
     </div>
   </>

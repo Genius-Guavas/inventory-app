@@ -39,7 +39,7 @@ export const App = () => {
 			{showCart ? <Cart setShowCart={setShowCart} cart={cart} setCart={setCart}/> :
 			isAddingItem? <Form setIsAddingItem={setIsAddingItem}/> :singleItem ? 
 			<ItemView singleItem={singleItem} setSingleItem={setSingleItem} setShowCart={setShowCart} setCart={setCart} cart={cart}/>:
-			<ItemsList setIsAddingItem={setIsAddingItem} items={items} setSingleItem={setSingleItem} setShowCart={setShowCart}/>
+			<ItemsList setIsAddingItem={setIsAddingItem} items={items} setSingleItem={setSingleItem} setShowCart={setShowCart} setCart={setCart} cart={cart}/>
 			
 			}
 
