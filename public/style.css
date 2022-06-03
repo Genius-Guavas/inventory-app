@@ -140,6 +140,19 @@ form input {
   box-shadow: 3px 2px 3px red;
 
 }
+.cart {
+  background-color: white;
+  width:300px ;
+padding: 20px;  
+margin-left: 150px;
+}
+.product{
+  border: 3px solid red;
+  width: fit-content;
+}
+.product img{
+  width: fit-content;
+}
 
 /* Media queries */
 @media (max-width:800px)and (min-width:700px){
@@ -173,6 +186,12 @@ margin:55px;
 .submitButton{
   margin-top: 4px;
 }
+.cart{
+  width: 200px;
+text-align: center;
+
+}
+
 }
 
 

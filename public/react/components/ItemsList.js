@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Items } from './Items';
 
-export const ItemsList = ({items, setSingleItem, setIsAddingItem, setShowCart}) => {
+export const ItemsList = ({items, setSingleItem, setIsAddingItem, setShowCart, cart, setCart}) => {
 	
 	
 	return <>
@@ -12,7 +12,7 @@ export const ItemsList = ({items, setSingleItem, setIsAddingItem, setShowCart}) 
 	</div>
 		{
 			items.map((item, idx) => {
-				return <Items item={item} key={idx} setSingleItem={setSingleItem}/>
+				return <Items item={item} key={idx} setSingleItem={setSingleItem} setCart={setCart} cart={cart}/>
 			})
 		}
 	
