@@ -28,6 +28,7 @@ export const Cart = ({cart, setCart, setShowCart}) => {
             <h2>
             {cart.reduce((acc, curr) => acc + Number(curr.price), 0).toFixed(2)}
             </h2>
+            <h3>*tax included</h3>
         </div>
         <button>Check Out</button>
     </div>
