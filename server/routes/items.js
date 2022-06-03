@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { Items } = require("../models");
-
 // GET all items
 
 router.get("/", async (req, res, next) => {
@@ -22,6 +21,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// get all in cart
 
 router.post("/", async (req, res, next) => {
   try {
