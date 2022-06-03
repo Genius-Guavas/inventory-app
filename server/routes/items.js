@@ -22,16 +22,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // get all in cart
-router.get("/cart", async (req, res, next) => {
-  try {
-    const items = await Items.findAll({where: {
-      cart : "Y"
-    }});
-    res.send(items);
-  } catch (error) {
-    next(error);
-  }
-});
+
 router.post("/", async (req, res, next) => {
   try {
     const item = await Items.create(req.body);

@@ -9,17 +9,17 @@ import apiURL from '../api';
 export const App = () => {
 
 	const [items, setItems] = useState([]);
-	const [addCart, setAddCart] = useState([])
+	const [cart, setCart] = useState([])
 	const [showCart, setShowCart]= useState(false)
 	const [singleItem, setSingleItem] = useState(0);
 	const [isAddingItem, setIsAddingItem] = useState(false);
+	
 	
 	async function fetchItems(){
 		try {
 			const response = await fetch(`${apiURL}/items`);
 			const itemsData = await response.json();
 			setItems(itemsData);
-			console.log(itemsData)
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
@@ -36,9 +36,9 @@ export const App = () => {
 	  </h1>
 	  	
 
-			{showCart ? <Cart setShowCart={setShowCart} addCart={addCart} setAddCart={setAddCart}/> :
+			{showCart ? <Cart setShowCart={setShowCart} cart={cart} setCart={setCart}/> :
 			isAddingItem? <Form setIsAddingItem={setIsAddingItem}/> :singleItem ? 
-			<ItemView singleItem={singleItem} setSingleItem={setSingleItem}/>:
+			<ItemView singleItem={singleItem} setSingleItem={setSingleItem} setShowCart={setShowCart} setCart={setCart} cart={cart}/>:
 			<ItemsList setIsAddingItem={setIsAddingItem} items={items} setSingleItem={setSingleItem} setShowCart={setShowCart}/>
 			
 			}

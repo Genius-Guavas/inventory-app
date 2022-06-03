@@ -8,7 +8,7 @@ const Items = sequelize.define("items", {
   price: Sequelize.NUMBER,
   category: Sequelize.STRING,
   image: Sequelize.STRING,
-  cart: Sequelize.STRING
+  cart: Sequelize.BOOLEAN
 });
 
 module.exports = {

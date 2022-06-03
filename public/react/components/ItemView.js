@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import apiURL from '../api';
 
-export const ItemView = ({ singleItem, setSingleItem, setShowCart, setAddCart , addCart }) => {
+export const ItemView = ({ singleItem, setSingleItem, setShowCart, setCart , cart }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -26,26 +26,34 @@ export const ItemView = ({ singleItem, setSingleItem, setShowCart, setAddCart , 
         const itemData = await res.json();
         setSingleItem(itemData);
     }
-    async function addToCart(item){
-        const data = { title, description, price, image, category, cart:'Y'};
-        for (let item in data) {
-            if (data[item] === "") delete data[item];
-        }
-        const response = await fetch(`${apiURL}/items/${item.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-        await response.json();
-        const res = await fetch(`${apiURL}/items/${item.id}`);
-        const itemData = await res.json();
-        setSingleItem(itemData);
-        console.log(itemData)
-        setAddCart([...addCart, itemData])        
+    // async function addToCart(item){
+    //     const data = { title, description, price, image, category, cart: true};
+    //     for (let item in data) {
+    //         if (data[item] === "") delete data[item];
+    //     }
+    //     const response = await fetch(`${apiURL}/items/${item.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    //     await response.json();
+    //     const res = await fetch(`${apiURL}/items/${item.id}`);
+    //     const itemData = await res.json();
+    //     setSingleItem(itemData);
+    //     console.log(itemData)
+    //     setAddCart([...addCart, itemData])        
       
-      }
-      console.log(addCart)
+    //   }
 
-
+    async function addToCart(product){
+    try {
+        await setCart([...cart, product])
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+}
+console.log(cart)
     return <>
         <div id="allItems" ><button onClick={()=>{setSingleItem(0)}}>All Items</button>
-      <button onClick={()=>{setShowCart(true)}}>Cart</button></div>
+      </div>
 <div id="item"> 
 
     <div className="singleItem">
